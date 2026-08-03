@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A passive, local-first sword-and-shield task board for Windows"
 authors = ["Sword Shield Chronicle contributors"]
 license = "MIT"
-repository = "https://github.com/wp-i/sword-shield-chronicle"
+repository = "https://github.com/wp-i/swordshield-notes"
 edition = "2024"
 
 [lib]

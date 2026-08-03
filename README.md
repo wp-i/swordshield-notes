@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wp-i/sword-shield-chronicle/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/wp-i/sword-shield-chronicle?display_name=tag&sort=semver"></a>
-  <a href="https://github.com/wp-i/sword-shield-chronicle/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/wp-i/sword-shield-chronicle/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/wp-i/swordshield-notes/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/wp-i/swordshield-notes?display_name=tag&sort=semver"></a>
+  <a href="https://github.com/wp-i/swordshield-notes/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/wp-i/swordshield-notes/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Windows" src="https://img.shields.io/badge/Windows-10%2F11-0078D4?logo=windows">
   <img alt="Tauri" src="https://img.shields.io/badge/Tauri-2-24C8DB?logo=tauri&logoColor=white">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green"></a>
@@ -38,7 +38,7 @@
 
 ## 下载与安装
 
-前往 [Releases](https://github.com/wp-i/sword-shield-chronicle/releases/latest) 下载 `剑盾纪事_*_x64-setup.exe`，双击安装即可。
+前往 [Releases](https://github.com/wp-i/swordshield-notes/releases/latest) 下载 `Sword-Shield-Chronicle_*_x64-setup.exe`，双击安装即可。
 
 当前为早期预览版，仅提供 Windows x64 安装包。安装包尚未购买代码签名证书，Windows 可能显示来源提示；请只从本仓库 Release 下载并核对发布页哈希。
 
