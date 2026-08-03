@@ -31,6 +31,9 @@ jobs:
         run: |
           $installer = Get-ChildItem "src-tauri/target/release/bundle/nsis/*-setup.exe" | Select-Object -First 1
           if (-not $installer) { throw "NSIS installer not found" }
-          $hash = (Get-FileHash $installer.FullName -Algorithm SHA256).Hash
+          $version = $env:GITHUB_REF_NAME.TrimStart("v")
+          $asset = Join-Path $env:RUNNER_TEMP "Sword-Shield-Chronicle_${version}_x64-setup.exe"
+          Copy-Item $installer.FullName $asset
+          $hash = (Get-FileHash $asset -Algorithm SHA256).Hash
           $notes = "Windows x64 installer`n`nSHA256: ``$hash``"
-          gh release create "$env:GITHUB_REF_NAME" $installer.FullName --title "剑盾纪事 $env:GITHUB_REF_NAME" --notes $notes
+          gh release create "$env:GITHUB_REF_NAME" $asset --title "剑盾纪事 $env:GITHUB_REF_NAME" --notes $notes
