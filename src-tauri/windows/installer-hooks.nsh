@@ -28,10 +28,19 @@ Var LegacyUninstaller
 
   ; The widget intentionally has no taskbar or tray entry, so the desktop
   ; shortcut is its explicit relaunch path after the user closes it.
-  Call CreateOrUpdateDesktopShortcut
+  SetShellVarContext current
+  ClearErrors
   ; Use a fingerprinted standalone icon path so Explorer cannot reuse a stale
   ; icon cached for the executable path after a visual identity update.
-  CreateShortCut "$DESKTOP\${PRODUCTNAME}.lnk" "$INSTDIR\${MAINBINARYNAME}.exe" "" "$INSTDIR\product-mark-a983b021.ico" 0 SW_SHOWNORMAL "" "${PRODUCTNAME}"
+  DetailPrint "Creating desktop shortcut: $DESKTOP\${PRODUCTNAME}.lnk"
+  CreateShortcut "$DESKTOP\${PRODUCTNAME}.lnk" "$INSTDIR\${MAINBINARYNAME}.exe" "" "$INSTDIR\product-mark-a983b021.ico" 0 SW_SHOWNORMAL "" "${PRODUCTNAME}"
+  ${If} ${Errors}
+    Abort "Unable to create the required desktop shortcut."
+  ${EndIf}
+  ${IfNot} ${FileExists} "$DESKTOP\${PRODUCTNAME}.lnk"
+    Abort "The required desktop shortcut was not created."
+  ${EndIf}
+  !insertmacro SetLnkAppUserModelId "$DESKTOP\${PRODUCTNAME}.lnk"
 
   ; Preserve the user's startup choice while migrating the registry value.
   DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "剑盾记事"

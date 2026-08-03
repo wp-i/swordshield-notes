@@ -421,15 +421,18 @@ mod desktop_window {
     fn desktop_owner() -> Result<HWND, String> {
         let mut after = None;
         loop {
-            let worker = unsafe { FindWindowExW(None, after, w!("WorkerW"), PCWSTR::null()) }
+            // Explorer may host the desktop view under different top-level
+            // window classes. Select the actual host of SHELLDLL_DefView
+            // instead of assuming that the host is always a WorkerW.
+            let host = unsafe { FindWindowExW(None, after, PCWSTR::null(), PCWSTR::null()) }
                 .map_err(|_| "Windows desktop host was not found".to_string())?;
 
-            if unsafe { FindWindowExW(Some(worker), None, w!("SHELLDLL_DefView"), PCWSTR::null()) }
+            if unsafe { FindWindowExW(Some(host), None, w!("SHELLDLL_DefView"), PCWSTR::null()) }
                 .is_ok()
             {
-                return Ok(worker);
+                return Ok(host);
             }
-            after = Some(worker);
+            after = Some(host);
         }
     }
 
