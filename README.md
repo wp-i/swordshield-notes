@@ -34,7 +34,7 @@
 
 | 主看板 | 移除历史 |
 | --- | --- |
-| ![剑盾纪事双栏任务看板](artifacts/ui-no-intro-runtime-preview.png) | ![剑盾纪事移除历史](artifacts/ui-history-remove-runtime-preview.png) |
+| ![剑盾纪事双栏任务看板](artifacts/readme-board-current.png) | ![剑盾纪事移除历史](artifacts/readme-history-current.png) |
 
 ## 下载与安装
 

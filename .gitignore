@@ -7,5 +7,5 @@ src-tauri/gen/schemas/
 
 # Local design iterations; keep only the two public product screenshots.
 artifacts/*
-!artifacts/ui-no-intro-runtime-preview.png
-!artifacts/ui-history-remove-runtime-preview.png
+!artifacts/readme-board-current.png
+!artifacts/readme-history-current.png
