@@ -1,0 +1,11 @@
+node_modules/
+dist/
+src-tauri/target/
+src-tauri/gen/schemas/
+*.log
+.DS_Store
+
+# Local design iterations; keep only the two public product screenshots.
+artifacts/*
+!artifacts/ui-no-intro-runtime-preview.png
+!artifacts/ui-history-remove-runtime-preview.png
