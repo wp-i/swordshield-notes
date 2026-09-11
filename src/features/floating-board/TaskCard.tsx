@@ -28,7 +28,13 @@ export function TaskCard({
   const [draft, setDraft] = useState(task.title);
   const [error, setError] = useState(false);
   const [striking, setStriking] = useState(false);
+  const [titleScrollState, setTitleScrollState] = useState({
+    scrollable: false,
+    canScrollUp: false,
+    canScrollDown: false,
+  });
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const titleRef = useRef<HTMLParagraphElement>(null);
   const removeTimerRef = useRef<number | null>(null);
   const {
     listeners,
@@ -40,6 +46,25 @@ export function TaskCard({
     id: task.id,
     data: { type: "task", groupId: task.groupId },
   });
+
+  const syncTitleScrollState = () => {
+    const title = titleRef.current;
+    if (!title) return;
+
+    const maxScrollTop = Math.max(0, title.scrollHeight - title.clientHeight);
+    setTitleScrollState({
+      scrollable: maxScrollTop > 1,
+      canScrollUp: title.scrollTop > 1,
+      canScrollDown: title.scrollTop < maxScrollTop - 1,
+    });
+  };
+
+  useEffect(() => {
+    if (editing) return;
+
+    const frame = requestAnimationFrame(syncTitleScrollState);
+    return () => cancelAnimationFrame(frame);
+  }, [editing, task.title]);
 
   useEffect(() => {
     if (!editing) {
@@ -180,11 +205,19 @@ export function TaskCard({
       ) : (
         <>
           <p
+            ref={titleRef}
             className="task-card__title"
             onWheel={handleTitleWheel}
+            onScroll={syncTitleScrollState}
           >
             {task.title}
           </p>
+          {titleScrollState.scrollable && (
+            <span className="task-card__scroll-hint" aria-hidden="true">
+              {titleScrollState.canScrollUp && <span>▲</span>}
+              {titleScrollState.canScrollDown && <span>▼</span>}
+            </span>
+          )}
           <time
             className="task-card__created-at"
             dateTime={new Date(task.createdAt).toISOString()}

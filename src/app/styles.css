@@ -462,6 +462,22 @@ input:focus-visible {
   display: none;
 }
 
+.task-card__scroll-hint {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: rgba(111, 83, 49, 0.78);
+  font-size: 7px;
+  line-height: 0.8;
+  text-shadow: 0 1px rgba(255, 244, 207, 0.65);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 .task-card__created-at {
   position: absolute;
   z-index: 2;
