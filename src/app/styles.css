@@ -439,10 +439,8 @@ input:focus-visible {
 }
 
 .task-card__title {
-  display: -webkit-box;
   width: 100%;
   margin: 0;
-  overflow: hidden;
   color: #24170f;
   font-size: 13px;
   font-weight: 760;
@@ -450,8 +448,7 @@ input:focus-visible {
   overflow-wrap: anywhere;
   text-shadow: 0 1px rgba(255, 244, 207, 0.74);
   text-align: center;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
 }
 
 .task-card__created-at {
@@ -468,16 +465,21 @@ input:focus-visible {
   pointer-events: none;
 }
 
-.inline-editor input {
+.inline-editor textarea {
+  display: block;
   width: 100%;
+  min-height: 55px;
   margin-top: 6px;
   padding: 5px 6px;
   border: 2px solid #67401e;
   outline: 0;
+  overflow-y: hidden;
+  resize: none;
   color: #21160e;
   background: #fff0c8;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 650;
+  line-height: 1.35;
   text-align: center;
 }
 

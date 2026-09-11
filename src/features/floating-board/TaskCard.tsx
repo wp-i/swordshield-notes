@@ -28,7 +28,7 @@ export function TaskCard({
   const [draft, setDraft] = useState(task.title);
   const [error, setError] = useState(false);
   const [striking, setStriking] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const removeTimerRef = useRef<number | null>(null);
   const {
     listeners,
@@ -51,6 +51,7 @@ export function TaskCard({
     const frame = requestAnimationFrame(() => {
       inputRef.current?.focus();
       inputRef.current?.select();
+      resizeEditor();
     });
     return () => cancelAnimationFrame(frame);
   }, [editing, task.title]);
@@ -66,6 +67,14 @@ export function TaskCard({
       return;
     }
     onCommitTitle(task.id, title);
+  };
+
+  const resizeEditor = () => {
+    const editor = inputRef.current;
+    if (!editor) return;
+
+    editor.style.height = "auto";
+    editor.style.height = `${editor.scrollHeight}px`;
   };
 
   const style = {
@@ -128,18 +137,20 @@ export function TaskCard({
           onPointerDown={(event) => event.stopPropagation()}
           onDoubleClick={(event) => event.stopPropagation()}
         >
-          <input
+          <textarea
             ref={inputRef}
             value={draft}
+            rows={1}
             aria-label="编辑任务标题"
             aria-invalid={error}
             onChange={(event) => {
               setDraft(event.target.value);
               setError(false);
+              requestAnimationFrame(resizeEditor);
             }}
             onBlur={commit}
             onKeyDown={(event) => {
-              if (event.key === "Enter") {
+              if (event.key === "Enter" && !event.shiftKey) {
                 event.preventDefault();
                 commit();
               }
