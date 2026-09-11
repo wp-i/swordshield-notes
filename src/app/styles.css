@@ -441,7 +441,7 @@ input:focus-visible {
 }
 
 .task-card__title {
-  max-height: 44px;
+  max-height: 2.7em;
   width: 100%;
   margin: 0;
   overflow-y: auto;
@@ -453,6 +453,8 @@ input:focus-visible {
   text-shadow: 0 1px rgba(255, 244, 207, 0.74);
   text-align: center;
   white-space: pre-wrap;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
   scrollbar-width: none;
 }
 

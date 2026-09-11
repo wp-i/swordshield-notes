@@ -77,6 +77,24 @@ export function TaskCard({
     editor.style.height = `${editor.scrollHeight}px`;
   };
 
+  const handleTitleWheel = (event: React.WheelEvent<HTMLParagraphElement>) => {
+    const title = event.currentTarget;
+    if (title.scrollHeight <= title.clientHeight || event.deltaY === 0) return;
+
+    event.preventDefault();
+    const lineHeight = Number.parseFloat(window.getComputedStyle(title).lineHeight);
+    const visibleLines = Math.max(1, Math.floor(title.clientHeight / lineHeight));
+    const pageStep = lineHeight * visibleLines;
+    const direction = event.deltaY > 0 ? 1 : -1;
+    const maxScrollTop = title.scrollHeight - title.clientHeight;
+    const nextScrollTop = Math.min(
+      maxScrollTop,
+      Math.max(0, title.scrollTop + direction * pageStep),
+    );
+
+    title.scrollTo({ top: nextScrollTop, behavior: "smooth" });
+  };
+
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -161,7 +179,12 @@ export function TaskCard({
         </div>
       ) : (
         <>
-          <p className="task-card__title">{task.title}</p>
+          <p
+            className="task-card__title"
+            onWheel={handleTitleWheel}
+          >
+            {task.title}
+          </p>
           <time
             className="task-card__created-at"
             dateTime={new Date(task.createdAt).toISOString()}
