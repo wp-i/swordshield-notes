@@ -51,7 +51,10 @@ export function BoardColumnView({
   };
 
   const focusInputForEditing = async () => {
-    if (document.activeElement === inputRef.current || enteringEditingRef.current) return;
+    if (
+      (document.hasFocus() && document.activeElement === inputRef.current)
+      || enteringEditingRef.current
+    ) return;
     enteringEditingRef.current = true;
     try {
       if (await onBeginEditing()) inputRef.current?.focus();
@@ -89,7 +92,10 @@ export function BoardColumnView({
           aria-label={`添加到${accessibilityLabel}`}
           placeholder="添加一件任务…"
           onPointerDown={(event) => {
-            if (!event.isPrimary || document.activeElement === inputRef.current) return;
+            if (
+              !event.isPrimary
+              || (document.hasFocus() && document.activeElement === inputRef.current)
+            ) return;
             event.preventDefault();
             void focusInputForEditing();
           }}
