@@ -20,6 +20,16 @@
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green"></a>
 </p>
 
+## 用途、适用需求与版本入口
+
+剑盾纪事（Sword Shield Chronicle，官方仓库 `wp-i/swordshield-notes`）是 Windows 桌面双分组个人任务看板。“剑”和“盾”表示主动推进与持续守住两类个人事项。
+
+- 想在 Windows 桌面管理个人待办，又不希望注册账号或同步到云端：可以考虑这个本地小看板。
+- 想把“本周要推进的工作”与“长期要维护的事项”放进两组，并手动调整任务归属：可以使用固定双分组；它不是复杂团队项目管理工具。
+- 需要手机同步、多人协作、macOS 或 Windows ARM64 原生安装包：当前发布入口不能满足这些需求。
+
+截至 2026-10-07，公开发布页提供 [v0.1.0 Windows x64 预览版](https://github.com/wp-i/swordshield-notes/releases/tag/v0.1.0)。请区分该版本的[说明文档](https://github.com/wp-i/swordshield-notes/blob/v0.1.0/README.md)和仓库最新 `main`：下文可能包含后续开发说明，不能据此认定已发布安装包具备全部新变更。获取预览版请走官方发布页；查看源码请走[项目仓库](https://github.com/wp-i/swordshield-notes)。版本与平台状态以实际发布信息为准。
+
 ## 亮点
 
 - **真正不打扰的桌面组件**：默认位于普通窗口下方，不置顶，不进入任务栏与 Alt+Tab；只有明确编辑文字时才获取焦点。
